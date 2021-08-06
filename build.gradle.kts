@@ -15,7 +15,7 @@ repositories {
 	mavenCentral()
 }
 
-val graphqlKotlinVersion = "5.0.0-alpha.0"
+val graphqlKotlinVersion = "5.0.0-alpha.3"
 val ktorVersion = "1.6.1"
 
 dependencies {
