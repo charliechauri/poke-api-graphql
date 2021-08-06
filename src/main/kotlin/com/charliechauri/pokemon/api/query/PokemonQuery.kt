@@ -1,8 +1,11 @@
 package com.charliechauri.pokemon.api.query
 
 import com.charliechauri.pokemon.api.adapters.PokemonAdapter
+import com.charliechauri.pokemon.api.models.Charizard
+import com.charliechauri.pokemon.api.models.Blastoise
 import com.charliechauri.pokemon.api.models.Pokemon
 import com.expediagroup.graphql.generator.annotations.GraphQLDescription
+import com.expediagroup.graphql.generator.annotations.GraphQLUnion
 import com.expediagroup.graphql.server.operations.Query
 import kotlinx.coroutines.coroutineScope
 import org.slf4j.LoggerFactory
@@ -17,5 +20,11 @@ class PokemonQuery : Query {
         val pokemonAdapter = PokemonAdapter()
 
         pokemonAdapter.getPokemonByName(name)
+    }
+
+    @GraphQLDescription("Ash's pokemons")
+    @GraphQLUnion(name = "AshPokemons", possibleTypes = [Charizard::class, Blastoise::class])
+    suspend fun getAshPokemon(): Any = coroutineScope {
+        Charizard()
     }
 }
